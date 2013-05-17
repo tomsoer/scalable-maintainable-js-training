@@ -38,7 +38,7 @@ APP.Quiz = (function ($, Mustache, window, document, undefined) {
             var len = data.length;
 
             for (var i = 0; i < len; i++) {
-                this.points += questions[i].points[parseInt(data[i].value)];
+                this.points += this.questions[i].points[parseInt(data[i].value)];
             }
 
             stage++;
