@@ -23,8 +23,7 @@
             margin: 2em auto;
         }
     </style>
-
-
+    <script data-main="js/main" src="js/require.js"></script>
 </head>
 
 <body>
@@ -36,16 +35,20 @@
 <!-- /container -->
 
 <script id="template-quiz__question" type="text/html">
-    {{#questions}}
-    <div data-index="{{dataIndex}}">
-        <h4>{{ question }}</h4>
+    <% _.each(questions, function(el) { %>
+    <div data-index="<%= el.dataIndex %>">
+        <h4><%= el.question %></h4>
         <ul>
-            {{#answers}}
-            <li><label><input type="radio" name="{{dataIndex}}" value="{{value}}"/> {{label}}</label></li>
-            {{/answers}}
+            <% _.each(el.answers, function(answer) { %>
+            <li>
+                <label>
+                    <input type="radio" name="<%= answer.dataIndex %>" value="<%= answer.value %>"/> <%= answer.label %>
+                </label>
+            </li>
+            <% }); %>
         </ul>
     </div>
-    {{/questions}}
+    <% }); %>
 </script>
 <script id="template-quiz__form" type="text/html">
     <form id="quiz-form">
@@ -56,13 +59,5 @@
 <script id="template-result" type="text/html">
     {{ result }}. Очков: {{ points }}
 </script>
-<script src="js/jquery.js"></script>
-<script src="js/mustache.js"></script>
-<script src="js/appData.js"></script>
-<script src="js/app.js"></script>
-<script src="js/EventBus.js"></script>
-<script src="js/quiz.js"></script>
-<script src="js/results.js"></script>
-<script src="js/main.js"></script>
 </body>
 </html>

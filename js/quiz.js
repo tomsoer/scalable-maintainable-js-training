@@ -1,4 +1,4 @@
-APP.Quiz = (function ($, Mustache, window, document, undefined) {
+define(["jquery", "_"], function ($, _) {
     "use strict";
     var stage = 0;
 
@@ -30,13 +30,7 @@ APP.Quiz = (function ($, Mustache, window, document, undefined) {
                 q.answers = answers;
                 stageQuestions.push(q);
             }
-
-            $(this.element).find('#questions').html(
-                Mustache.render(
-                    APP.getTemplate('template-quiz__question'),
-                    {questions: stageQuestions}
-                )
-            );
+            $(this.element).html(_.template($('template-quiz__form').text(),{questions: stageQuestions}));
         },
 
         processForm: function () {
@@ -53,7 +47,7 @@ APP.Quiz = (function ($, Mustache, window, document, undefined) {
         },
 
         renderForm: function () {
-            $(this.element).html(Mustache.render(APP.getTemplate('template-quiz__form')));
+            $(this.element).html(_.template($('template-quiz__form').text()));
 
             var $form = $(this.element).find('form'),
                 self = this;
@@ -65,10 +59,10 @@ APP.Quiz = (function ($, Mustache, window, document, undefined) {
         },
         init: function (options) {
             this.element = options.element[0];
-            this.questions = options.questions;
+            this.questions = options.questions || [];
 
             this.renderForm();
             this.renderQuestions();
         }
     };
-})(jQuery, Mustache, window, document);
+});

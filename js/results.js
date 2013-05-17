@@ -1,4 +1,4 @@
-APP.Results = (function ($, Mustache, window, document) {
+define(["jquery", "app"/*, "_"*/], function ($, APP/*, _*/) {
     "use strict";
 
     return {
@@ -12,6 +12,7 @@ APP.Results = (function ($, Mustache, window, document) {
         },
 
         bindEvents: function () {
+            console.log(APP);
             APP.EventBus.bind('quiz:result', this.process, this);
         },
 
@@ -19,7 +20,7 @@ APP.Results = (function ($, Mustache, window, document) {
             var i = 0;
             for (; i < this.results.length; i++) {
                 if (points <= this.results[i].to) {
-                    $(this.element).html(Mustache.render(APP.getTemplate('template-result'), {
+                    $(this.element).html(_.template(APP.getTemplate('template-result'), {
                         result: this.results[i].status,
                         points: points
                     }));
@@ -28,4 +29,4 @@ APP.Results = (function ($, Mustache, window, document) {
             }
         }
     };
-})(jQuery, Mustache, window, document);
+});
