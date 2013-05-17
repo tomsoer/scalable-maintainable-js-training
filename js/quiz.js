@@ -5,7 +5,7 @@ APP.Quiz = (function ($, Mustache, window, document, undefined) {
     return {
         points: 0,
         element: null,
-        questions:[],
+        questions: [],
 
         renderQuestions: function () {
             "use strict";
@@ -18,11 +18,12 @@ APP.Quiz = (function ($, Mustache, window, document, undefined) {
                     APP.EventBus.trigger('quiz:result', this.points);
                     return;
                 }
-                var q = this.questions[index];
-                q.dataIndex = index;
 
-                var answers = [],
+                var q = this.questions[index],
+                    answers = [],
                     a = 0;
+
+                q.dataIndex = index;
                 for (; a < 3; a++) {
                     answers.push({value: a, label: q.answers[a]});
                 }
@@ -30,10 +31,15 @@ APP.Quiz = (function ($, Mustache, window, document, undefined) {
                 stageQuestions.push(q);
             }
 
-            $(this.element).find('#questions').html(Mustache.render(APP.getTemplate('template-quiz__question'), {questions: stageQuestions}));
+            $(this.element).find('#questions').html(
+                Mustache.render(
+                    APP.getTemplate('template-quiz__question'),
+                    {questions: stageQuestions}
+                )
+            );
         },
 
-        precessForm: function () {
+        processForm: function () {
             var data = $(this.element).find('form').serializeArray();
             var len = data.length;
 
@@ -48,10 +54,12 @@ APP.Quiz = (function ($, Mustache, window, document, undefined) {
 
         renderForm: function () {
             $(this.element).html(Mustache.render(APP.getTemplate('template-quiz__form')));
-            var $form = $(this.element).find('form');
-            var self = this;
+
+            var $form = $(this.element).find('form'),
+                self = this;
+
             $form.on('submit', function () {
-                self.precessForm();
+                self.processForm();
                 return false;
             });
         },
