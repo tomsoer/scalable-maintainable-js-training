@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Template &middot; Bootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style>
+        #questions ul {
+            list-style: none;
+        }
+
+        #questions li {
+            padding: 0;
+            margin: 0;
+        }
+
+        #content {
+            margin: 2em auto;
+        }
+    </style>
+    <script data-main="js/main" src="js/require.js"></script>
+</head>
+
+<body>
+
+<div class="container" id="content">
+
+
+</div>
+<!-- /container -->
+
+<script id="template-quiz__question" type="text/html">
+    <% _.each(questions, function(el) { %>
+    <div data-index="<%= el.dataIndex %>">
+        <h4><%= el.question %></h4>
+        <ul>
+            <% _.each(el.answers, function(answer) { %>
+            <li>
+                <label>
+                    <input type="radio" name="<%= answer.dataIndex %>" value="<%= answer.value %>"/> <%= answer.label %>
+                </label>
+            </li>
+            <% }); %>
+        </ul>
+    </div>
+    <% }); %>
+</script>
+<script id="template-quiz__form" type="text/html">
+    <form id="quiz-form">
+        <div id="questions"></div>
+        <button type="submit" class="btn">Ответить</button>
+    </form>
+</script>
+<script id="template-result" type="text/html">
+    {{ result }}. Очков: {{ points }}
+</script>
+</body>
+</html>
