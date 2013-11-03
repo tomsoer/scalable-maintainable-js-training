@@ -7,11 +7,11 @@
 - Описать два jQuery-плагина:
     - Плагин опроса (данные: `quiz.json`)
     - Плагин отображения ответов (данные: `results.json`)
-- [Gist: jQuery Plugin Boilerplate](http://d.pr/5aFv)
+- [Gist: jQuery Plugin Boilerplate](https://gist.github.com/pukhalski/5590391)
 
 ## Часть 2.
 
 - Переписать текущий jQuery-плагины на стандартный Module Pattern
 - Для общения модулей использовать Mediator Pattern
-- [Gist: Module Pattern Boilerplate](http://d.pr/X87H)
-- [Gist: Mediator Pattern (Event Bus)](http://d.pr/QCoU)
+- [Gist: Module Pattern Boilerplate](https://gist.github.com/pukhalski/5590920)
+- [Gist: Mediator Pattern (Event Bus)](https://gist.github.com/pukhalski/5590943)
